@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+
+{% block content%}
+      <div class="login">
+        <div class="container">
+          <h2>Login sahifasi</h2>
+          <form action="{{url_for('login')}}">
+           <label for="login">Login</label>
+            <input id="login" name="login" type="text">
+
+            <label for="parol">pssword</label>
+            <input id="parol" name="parol" type="password">
+
+
+              <button type="submit"> Login </button>
+            <p>Agar ro'yxatdan o'tmagan bo'lsangiz <a href="{{url_for('reg')}}">ro'yhatdan o'ting</a></p>
+          </form>
+        </div>
+      </div>
+{% endblock %}
