@@ -45,7 +45,7 @@ class Database:
                 """
         return self.ishlatish(sql , fetchall=True)
 
-    def savatcha(self):
+    def savatcha(self ):
         sql="""
     SELECT food.nomi,
             ovqat_miqdorlari.narxi, 
@@ -57,6 +57,7 @@ class Database:
     INNER JOIN ovqat_miqdorlari ON miqdor.id = ovqat_miqdorlari.miqdor_id
     INNER JOIN savatcha ON ovqat_miqdorlari.id = savatcha.ovqat_id
     INNER JOIN food ON ovqat_miqdorlari.ovqat_id = food.id
+    where savatcha.user_id = {id}
     """
         return self.ishlatish(sql  , fetchall=True)
     def registratsiya(self , ism , familiya , login , pasword):
@@ -64,5 +65,34 @@ class Database:
                 insert into foydalanuvchilar(ism , familiya , login  ,parol)
                 values('{ism}' ,'{familiya}' ,'{login}' , '{pasword}')
                 """
+        self.ishlatish(sql , commit=True)
+    def check_user(self , login ,parol):
+        sql = f"""
+                    SELECT * FROM foydalanuvchilar WHERE login = '{login}' and parol = '{parol}'
+                """
+        return self.ishlatish(sql, fetchone=True)
+    def user_savat(self , id):
+        sql = f"""
+
+       SELECT food.nomi,
+            ovqat_miqdorlari.narxi, 
+            ovqat_miqdorlari.tarifi, 
+            ovqat_miqdorlari.rasmi,
+            miqdor.turi,
+            savatcha.soni,
+            savatcha.id
+        FROM miqdor
+        INNER JOIN ovqat_miqdorlari ON miqdor.id = ovqat_miqdorlari.miqdor_id
+        INNER JOIN savatcha ON ovqat_miqdorlari.id = savatcha.ovqat_id
+        INNER JOIN food ON ovqat_miqdorlari.ovqat_id = food.id
+        where savatcha.user_id={id}
+        """
+        return self.ishlatish(sql , fetchall=True)
+    def delmahsulot(self , id):
+        sql = f" delete from savatcha where id={id}"
+        self.ishlatish(sql , commit=True)
+    def addsavat(self , userid , ovqatid ,zakazid ,  soni):
+        sql = f"""INSERT INTO savatcha(user_id , ovqat_id , zakaz_id , soni)
+        VALUES ('{userid}' , '{ovqatid}' ,'{zakazid}', {soni})"""
         self.ishlatish(sql , commit=True)
 obj=Database()

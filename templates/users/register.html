@@ -5,18 +5,18 @@
     <div class="container">
         <form method="post">
            <label>Ism</label>
-            <input name="ism" type="text">
+            <input name="ism" type="text" required>
 
             <label>familiya</label>
-            <input name="familiya" type="text">
+            <input name="familiya" type="text" required>
 
             <label>login</label>
-            <input name="login" type="text">
+            <input name="login" type="text" required>
 
             <label>password</label>
-            <input name="pasword" type="password">
+            <input name="pasword" type="password" required>
 
-            <button type="submit"> ro'yxatdan o'tish </button>
+            <button type="submit" class="btn"> ro'yxatdan o'tish </button>
 
         </form>
                  <p>Agar ro'yxatdan o'tgan bo'lsangiz <a href="{{url_for('login')}}">login</a></p>
