@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<!--    <script src="./script.js" defer></script>-->
     {% block style %}
 
     {% endblock%}
@@ -16,7 +17,7 @@
                 <a href="#" class="logo">
                     <img src="{{ url_for('static' , filename='images/logo.svg')}}" alt="Foodiee.order">
                 </a>
-                <!-- Toggle bar -->
+
                 <div class="burger">
                     <span></span>
                     <span></span>
@@ -63,6 +64,8 @@
 <script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe/dist/gumshoe.polyfills.min.js"></script>
 <script src="https://unpkg.com/tilt.js@1.2.1/dest/tilt.jquery.min.js"></script>
 <script src="{{ url_for('static' , filename='/js/main.js')}}"></script>
+<script src="{{ url_for('static' , filename='/js/script.js')}}"></script>
+
 <script>
     $('.js-tilt').tilt({
         scale: 1.1

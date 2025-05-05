@@ -15,7 +15,7 @@ class Database:
 
     def ishlatish(self,sql,fetchall=False, fetchone=False, commit=False):
         self.db=self.ulanish()
-        cursor=self.db.cursor()
+        cursor = self.db.cursor()
         cursor.execute(sql)
         data=None
         if fetchall:
